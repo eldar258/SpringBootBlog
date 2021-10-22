@@ -1,8 +1,17 @@
 package com.fludilka.fludilka;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.validation.constraints.Size;
+import javax.persistence.Id;
 
+@Entity
 public class User {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
 
     @Size(min=4, max=20)
     private String nick;
@@ -19,7 +28,7 @@ public class User {
     }
 
     public String toString() {
-        return String.format("User(Nick: %s", this.nick);
+        return String.format("User[id=%d nick=%s password=%s]", this.id, this.nick, this.password);
     }
 
     public String getPassword() {

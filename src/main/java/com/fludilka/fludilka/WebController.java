@@ -18,16 +18,17 @@ public class WebController implements WebMvcConfigurer {
         registry.addViewController("/results").setViewName("results");
     }
 
-    @RequestMapping(value="/", method= RequestMethod.GET)
-    public String showForm(User user) {
+    @RequestMapping(value="/registration", method= RequestMethod.GET)
+    public String showRegistrationForm(User user) {
         return "registrationForm";
     }
 
-    @RequestMapping(value="/", method=RequestMethod.POST)
+    @RequestMapping(value="/registration", method=RequestMethod.POST)
     public String checkUserInfo(@Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "registrationForm";
         }
+
         return "redirect:/results";
     }
 }
